@@ -19,7 +19,7 @@ jobs:
 
   - task: AzureCLI@2
     inputs:
-      azureSubscription: '<Your-Azure-Subscription>'
+      azureSubscription: 'cc208b0e-b992-4a4e-8f0a-1781d59c7a36'
       scriptType: 'bash'
       scriptLocation: 'inlineScript'
       inlineScript: 'az aks browse --resource-group <Resource-Group-Name> --name <AKS-Cluster-Name>'
