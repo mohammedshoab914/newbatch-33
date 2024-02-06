@@ -1,0 +1,26 @@
+trigger:
+- main
+
+pool:
+  vmImage: 'ubuntu-latest'
+
+jobs:
+- job: DeployToAKS
+  steps:
+  - task: UseDotNet@2
+    inputs:
+      version: '2.0.x'
+      packageType: 'sdk'
+
+  - script: |
+      # Your deployment script or commands here
+      kubectl apply -f deployment.yaml
+    displayName: 'Deploy to AKS'
+
+  - task: AzureCLI@2
+    inputs:
+      azureSubscription: '<Your-Azure-Subscription>'
+      scriptType: 'bash'
+      scriptLocation: 'inlineScript'
+      inlineScript: 'az aks browse --resource-group <Resource-Group-Name> --name <AKS-Cluster-Name>'
+    displayName: 'Open AKS Dashboard'

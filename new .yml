@@ -1,0 +1,21 @@
+version: '3'  # Specify the Docker Compose file format version
+
+services:    # Define the services that make up your application
+
+  web:    # Define the web service
+    image: nginx:latest  # Use the nginx Docker image from Docker Hub
+    ports:
+      - "80:80"  # Map container port 80 to host port 80
+    networks:
+      - my_network  # Attach the service to a custom network named 'my_network'
+
+  db:    # Define the database service
+    image: mysql:latest  # Use the MySQL Docker image from Docker Hub
+    environment:
+      MYSQL_ROOT_PASSWORD: example_password  # Set environment variable for MySQL root password
+    networks:
+      - my_network  # Attach the service to the same custom network as the web service
+
+networks:   # Define networks that services can connect to
+  my_network: {}   # Define a custom network named 'my_network'
+cls
